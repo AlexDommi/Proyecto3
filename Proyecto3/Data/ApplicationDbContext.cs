@@ -10,8 +10,8 @@ namespace Proyecto3.Data
         public DbSet<Contactos> Contactos { get; set; }
         public DbSet<Correos> Correos { get; set; }
         public DbSet<Direcciones> Direcciones { get; set; }
-        public DbSet<Estados> Estados { get; set; }
-        public DbSet<Municipios> Municipios { get; set; }
+        public DbSet<Acuerdos> Acuerdos { get; set; }
         public DbSet<Seguimientos> Seguimientos { get; set; }
+
     }
 }

@@ -4,8 +4,7 @@ namespace Proyecto3.Models
 {
     public class Direcciones : Registry
     {
-        [Key]
-        public int DireccionId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string DireccionCalle { get; set; }
         public string DireccionEntreCalle1 { get; set; }
@@ -18,6 +17,7 @@ namespace Proyecto3.Models
 
         public int ClientesId { get; set; }
         public Clientes Clientes { get; set; }
-
     }
+
+
 }
