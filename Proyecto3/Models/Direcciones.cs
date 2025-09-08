@@ -4,6 +4,7 @@ namespace Proyecto3.Models
 {
     public class Direcciones : Registry
     {
+        [Key]
         public int DireccionId { get; set; }
         [Required]
         public string DireccionCalle { get; set; }

@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto3.Models;
 
-namespace Proyecto3.Data.Migration
+namespace Proyecto3.Data
 {
-    public class ApplicationDbContext : DbContext
-    {
+    public class ApplicationDbContext : DbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Clientes> Clientes { get; set; }

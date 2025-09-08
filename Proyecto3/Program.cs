@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Proyecto3.Data.Migration;
+using Proyecto3.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
