@@ -16,8 +16,8 @@ namespace Proyecto3.Models
         [Required]
         public string DireccionColonia { get; set; }
 
-        public IEnumerable<Clientes> Clientes { get; set; }
-        public IEnumerable<Estados> Estados { get; set; }
-        public IEnumerable<Municipios> Municipios { get; set; }
+        public int ClientesId { get; set; }
+        public Clientes Clientes { get; set; }
+
     }
 }

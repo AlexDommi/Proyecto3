@@ -9,7 +9,7 @@ namespace Proyecto3.Models
         [Required]
         public string ContactoTelefono { get; set; }
 
-        // Navigation property for related Clientes
-        public IEnumerable<Clientes> Clientes { get; set; }
+        public int ClientesId { get; set; }
+        public Clientes Clientes { get; set; }
     }
 }

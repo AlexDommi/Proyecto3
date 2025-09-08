@@ -9,8 +9,7 @@ namespace Proyecto3.Models
         [Required]
         public string CorreoDireccion { get; set; }
         
-        public IEnumerable<Clientes> Clientes { get; set; }
-
-        
+        public int ClientesId { get; set; }
+        public Clientes Clientes { get; set; }
     }
 }
