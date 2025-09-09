@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto3.Models
 {
-    public class Clientes : Registry
+    public class Customers : Registry
     {
         public int Id { get; set; }
         [Required]
@@ -11,10 +11,10 @@ namespace Proyecto3.Models
         [Required]
         public string ClienteApellidos { get; set; }
 
-        public IEnumerable<Acuerdos> Acuerdos { get; set; }
-        public IEnumerable<Contactos> Contactos { get; set; }
-        public IEnumerable<Correos> Correos { get; set; }
+        public IEnumerable<Agreements> Acuerdos { get; set; }
+        public IEnumerable<Contacts> Contactos { get; set; }
+        public IEnumerable<Mails> Correos { get; set; }
         public  IEnumerable<Direcciones> Direcciones { get; set; }
-        public IEnumerable<Seguimientos> Seguimientos { get; set; }
+        public IEnumerable<Followups> Seguimientos { get; set; }
     }
 }

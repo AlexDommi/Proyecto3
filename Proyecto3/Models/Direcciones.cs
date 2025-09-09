@@ -16,7 +16,7 @@ namespace Proyecto3.Models
         public string DireccionColonia { get; set; }
 
         public int ClientesId { get; set; }
-        public Clientes Clientes { get; set; }
+        public Customers Clientes { get; set; }
     }
 
 

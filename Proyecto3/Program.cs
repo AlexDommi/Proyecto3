@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto3.Data;
+using Proyecto3.Services.Interfaces;
+using Proyecto3.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,11 @@ var connection = builder.Configuration.GetConnectionString("DefaultConnection") 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connection));
+
+#region Servicios
+builder.Services.AddScoped<IAgreementsService,AgreementsService>();
+builder.Services.AddScoped<ICustomersService, CustomersService>();
+#endregion Servicios
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

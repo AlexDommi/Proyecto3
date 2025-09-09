@@ -1,20 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Proyecto3.Models
+namespace Proyecto3.DTOs
 {
-    public class Acuerdos : Registry
+    public class AgreementsReadDTO : RegistryDTO
     {
         public int Id { get; set; }
 
+        [Display(Name = "Cliente")]
         public int ClientesId { get; set; }
-        public Clientes Clientes { get; set; }
 
-        [Column(TypeName = "decimal(10,2)")]
+        [Display(Name = "Pago")]
         public decimal AcuerdoPago { get; set; }
 
-        [Required]
+        [Display(Name = "Fecha")]
         public DateTime AcuerdoFecha { get; set; }
 
+        public string Clientes { get; set; }
     }
 }
