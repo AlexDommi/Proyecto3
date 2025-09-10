@@ -46,12 +46,12 @@
                                 <i class="@(item.Activo ? "fas fa-check text-success" : "fas fa-times text-danger")"></i>
                             </td>
 
-                            <td>@item.HoraAlta</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-info btn-sm ver-detalle m-2" data-id="@item.Id">
+                                  <button class="btn btn-info btn-sm ver-detalle m-2" data-id="@item.Id">
                                         Ver detalle
                                     </button>
+
                                     <a href="@Url.Action("Edit", "Directions", new { id = item.Id })"
                                        class="btn btn-sm btn-secondary m-2">
                                         <i class="fa-solid fa-pencil"></i> Editar

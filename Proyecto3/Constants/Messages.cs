@@ -1,4 +1,4 @@
-﻿namespace EcommerceMVC.Constants
+﻿namespace Proyecto3.Constants
 {
     public class Messages
     {

@@ -12,5 +12,7 @@ namespace Proyecto3.DTOs
         [Required(ErrorMessage = "El cliente requerido")]
         [Display(Name = "Cliente")]
         public int ClientesId { get; set; }
+
+        public IEnumerable<CustomersReadDTO> Clientes { get; set; } = new List<CustomersReadDTO>();
     }
 }

@@ -1,7 +1,7 @@
-﻿using EcommerceMVC.Constants;
-using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Proyecto3.Constants;
 using Proyecto3.DTOs;
 using Proyecto3.Services.Implementations;
 using Proyecto3.Services.Interfaces;
@@ -92,6 +92,7 @@ namespace Proyecto3.Controllers
 
             return View(directionsCreateDto);
         }
+        
 
 
         [HttpPost]
@@ -107,6 +108,7 @@ namespace Proyecto3.Controllers
             directionsCreateDTO.Clientes = await _customersService.GetAllAsync();
             return View(directionsCreateDTO);
         }
+
 
         // Acción para mostrar la confirmación de eliminación
         public async Task<IActionResult> ConfirmDelete(int id)

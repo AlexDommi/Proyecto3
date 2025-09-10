@@ -1,6 +1,6 @@
-﻿using EcommerceMVC.Constants;
-using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto3.Constants;
 using Proyecto3.DTOs;
 using Proyecto3.Services.Interfaces;
 
@@ -50,7 +50,7 @@ namespace Proyecto3.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
+                TempData["ErrorMessage"] = "Error al modificar registro";
                 return RedirectToAction("Index");
             }
         }

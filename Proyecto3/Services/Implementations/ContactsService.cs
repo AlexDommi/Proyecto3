@@ -2,10 +2,11 @@
 using Proyecto3.Data;
 using Proyecto3.DTOs;
 using Proyecto3.Models;
+using Proyecto3.Services.Interfaces;
 
 namespace Proyecto3.Services.Implementations
 {
-    public class ContactsService
+    public class ContactsService : IContactsService
     {
         private readonly ApplicationDbContext _context;
         public ContactsService(ApplicationDbContext context)

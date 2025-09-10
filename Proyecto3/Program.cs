@@ -6,6 +6,7 @@ using Proyecto3.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 var connection = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
