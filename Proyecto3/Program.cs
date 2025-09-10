@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 #region Servicios
 builder.Services.AddScoped<IAgreementsService,AgreementsService>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
+builder.Services.AddScoped<IDirectionsServices, DirectionsServices>();
 #endregion Servicios
 
 // Add services to the container.

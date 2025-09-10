@@ -1,96 +1,111 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
+using Proyecto3.Services.Implementations;
 using Proyecto3.Services.Interfaces;
 
 namespace Proyecto3.Controllers
 {
     public class DirectionsController : Controller
     {
-        private readonly IAgreementsService _agreementsService;
-
+        private readonly IDirectionsServices _directionService;
+        private readonly ICustomersService _customersService;
         public DirectionsController(
-            IAgreementsService agreementsService
+            IDirectionsServices directionsServices,
+            ICustomersService customersServices
             )
         {
-            _agreementsService = agreementsService;
+            _directionService = directionsServices;
+            _customersService = customersServices;
         }
 
+        // Acción para obtener todos los productos
         public async Task<IActionResult> Index()
         {
-            var agreements = await _agreementsService.GetAllAsync();
-            return View(agreements);
+            var direcciones = await _directionService.GetAllAsync();
+            return View(direcciones);
         }
 
-
-        //Mostrar Cliente por ID
+        // Acción para ver los detalles de un producto
         public async Task<IActionResult> Details(int id)
         {
             try
             {
-                var result = await _agreementsService.GetByIdAsync(id);
+                var result = await _directionService.GetByIdAsync(id);
                 return View(result);
 
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "No se encontro el detalle";
+                TempData["ErrorMessage"] = "Error";
                 return RedirectToAction("Index");
             }
         }
-        public async Task<IActionResult> Edit(int id)
-        {
-            try
-            {
-                AgreementsReadDTO result = await _agreementsService.GetByIdAsync(id);
-                var result2 = result.Adapt<AgreementsCreateDTO>();
 
-                return View(result2);
-            }
-            catch (Exception)
-            {
-                TempData["ErrorMessage"] = "Error al modificar registro";
-                return RedirectToAction("Index");
-            }
-        }
-        public async Task<IActionResult> Create(AgreementsCreateDTO result)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    await _agreementsService.AddAsync(result);
-                    TempData["SuccessMessage"] = "Registro agregado exitosamente!";
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception)
-            {
 
-                TempData["ErrorMessage"] = "Error al crear el registro";
-            }
-            return View(result);
+        // Acción para mostrar el formulario de agregar producto
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var clientes = await _customersService.GetAllAsync();
+            ViewBag.Clientes = new SelectList(clientes, "Id", "ClienteNombre");
+
+            return View();
         }
 
-        // Acción para procesar el formulario de edición de producto
+        // Acción para procesar el formulario de agregar producto
         [HttpPost]
-        public async Task<IActionResult> Edit(AgreementsCreateDTO result)
+        public async Task<IActionResult> Create(DirectionsCreateDTO directionsCreateDTO)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await _agreementsService.UpdateAsync(result.Id, result);
-                    TempData["SuccessMessage"] = "Registro actualizado existosamente";
+                    //throw new ApplicationException("Ejemplo");
+                    await _directionService.AddAsync(directionsCreateDTO);
+                    TempData["SuccessMessage"] = "Registro exitoso";
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = "Error al registrar";
             }
 
-            return View(result);
+            var clientes = await _customersService.GetAllAsync();
+            ViewBag.Clientes = new SelectList(clientes, "Id", "ClienteNombre");
+
+            return View(directionsCreateDTO);
+        }
+
+        // Acción para mostrar el formulario de edición de un producto
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var directionsDTO = await _directionService.GetByIdAsync(id);
+            var clientes = await _customersService.GetAllAsync();
+
+            var directionsCreateDto = directionsDTO.Adapt<DirectionsCreateDTO>();
+            // asigna la lista de clientes al DTO
+            directionsCreateDto.Clientes = clientes;
+
+            return View(directionsCreateDto);
+        }
+
+        // Edit POST (si falla la validación recarga la lista)
+        [HttpPost]
+        public async Task<IActionResult> Edit(DirectionsCreateDTO directionsCreateDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _directionService.UpdateAsync(directionsCreateDTO.Id, directionsCreateDTO);
+                return RedirectToAction("Index");
+            }
+
+            // recarga lista para el select antes de retornar la vista
+            directionsCreateDTO.Clientes = await _customersService.GetAllAsync();
+            return View(directionsCreateDTO);
         }
 
         // Acción para mostrar la confirmación de eliminación
@@ -98,12 +113,12 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                var result = await _agreementsService.GetByIdAsync(id);
-                return View(result); // Muestra la vista de confirmación
+                var product = await _directionService.GetByIdAsync(id);
+                return View(product); // Muestra la vista de confirmación
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = "No se pudo borrar el registro";
                 return RedirectToAction("Index");
             }
         }
@@ -115,12 +130,12 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                await _agreementsService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro eliminado";
+                await _directionService.DeleteAsync(id);
+                TempData["SuccessMessage"] = "Registro borrado con exito";
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = "No se pudo borrar el registro";
             }
 
             return RedirectToAction("Index");

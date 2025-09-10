@@ -15,5 +15,6 @@ namespace Proyecto3.DTOs
         [Display(Name = "Apellidos")]
         public string ClienteApellidos { get; set; }
 
+       
     }
 }
