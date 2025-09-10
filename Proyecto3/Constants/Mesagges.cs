@@ -5,43 +5,40 @@
         public static class Success
         {
             // Creación
-            public const string BrandCreated = "Marca agregada exitosamente";
-            public const string CategoryCreated = "Categoría agregada exitosamente.";
-            public const string ProductCreated = "Producto agregado exitosamente.";
+            public const string CustomersCreated = "Cliente registrado exitosamente";
+            public const string DirectionsCreated = "Direccion agregada exitosamente.";
+            public const string RecordCreated = "Registro agregado exitosamente";
 
             // Actualización
-            public const string ProductUpdated = "Producto actualizado exitosamente";
-            public const string BrandUpdated = "Marca actualizada exitosamente";
-            public const string CategoryUpdated = "Categoría actualizada exitosamente";
-
+            public const string CustomersUpdated = "Cliente actualizado exitosamente";
+            public const string DirectionsUpdated = "Direccion actualizada exitosamente.";
+            public const string RecordUpdated = "Registro actualizado exitosamente";
             // Eliminación
-            public const string ProductDeleted = "Producto eliminado exitosamente";
-            public const string BrandDeleted = "Marca eliminada exitosamente";
-            public const string CategoryDeleted = "Categoría eliminada exitosamente";
+            public const string CustomersDeleted = "Cliente eliminado exitosamente";
+            public const string DirectionsDeleted = "Direccion eliminado exitosamente.";
+            public const string RecordDeleted = "Registro eliminado exitosamente";
         }
         public static class Error
         {
             // Búsqueda/Existencia
-            public const string ProductNotFoundWithId = "Producto con ID {0} no encontrado";
-            public const string ProductNotFound = "Producto no encontrado";
-            public const string BrandNotFound = "Marca no encontrada";
-            public const string CategoryNotFound = "Categoría no encontrada";
+            public const string CustomersNotFoundWithId = "Cliente con ID {0} no encontrado";
+            public const string DirectionsNotFound = "Direccion no encontrada";
+            public const string DetailNotFound = "No se encontro el detalle";
 
             // Creación
-            public const string ProductCreateError = "Hubo un error al agregar el producto";
-            public const string BrandCreateError = "Hubo un error al agregar la marca";
-            public const string CategoryCreateError = "Hubo un error al agregar la categoría";
+            public const string CustomersCreateError = "Hubo un error al agregar el cliente";
+            public const string DirectionsCreateError = "Hubo un error al agregar la direccion";
+            public const string RecordCreatedError = "Error al crear el registro";
 
             // Actualización
-            public const string ProductUpdateError = "Error al actualizar el producto";
-            public const string BrandUpdateError = "Error al actualizar la marca";
-            public const string CategoryUpdateError = "Error al actualizar la categoría";
+            public const string CustomersUpdateError = "Error al actualizar el cliente";
+            public const string DirectionsUpdateError = "Error al actualizar la direccion";
+            public const string RecordUpdateError = "Error al actualizar la direccion";
 
             // Eliminación
-            public const string ProductDeleteError = "Error al eliminar el producto";
-            public const string BrandDeleteError = "Error al eliminar la marca";
-            public const string CategoryDeleteError = "Error al eliminar la categoría";
-            public const string ProductCannotBeDeleted = "No se puede eliminar el producto porque tiene referencias";
+            public const string CustomersDeleteError = "Error al eliminar el cliente";
+            public const string DirectionsDeleteError = "Error al eliminar la direccion";
+            public const string RecordDeleteError = "Error al eliminar el registro";
         }
         public static class Validation
         {
