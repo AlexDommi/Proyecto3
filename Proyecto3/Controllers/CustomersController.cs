@@ -33,14 +33,17 @@ namespace Proyecto3.Controllers
             {
                 var cliente = await _clientesService.GetByIdAsync(id);
                 return View(cliente);
+                return PartialView("_Details", cliente);
 
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = Messages.Error.DetailNotFound
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound;
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             try
