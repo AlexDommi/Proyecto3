@@ -1,7 +1,7 @@
-﻿@model Proyecto3.DTOs.CustomersReadDTO
+﻿@model Proyecto3.DTOs.DirectionsReadDTO
 
 @{
-    ViewData["Title"] = "Detalles del Cliente";
+    ViewData["Title"] = "Detalles de la direccion";
 }
 
 <div class="container mt-5">
@@ -14,11 +14,27 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClienteNombre):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.ClienteNombre)</dd>
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Id):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.Id)</dd>
 
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClienteApellidos):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.ClienteApellidos)</dd>
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionColonia):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionColonia)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCalle):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCalle)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle1):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle1)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle2):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle2)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCodigoPostal):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCodigoPostal)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClientesId):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.ClientesId)</dd>
+
                     </dl>
                 </div>
 
@@ -36,13 +52,13 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="@Url.Action("Index", "Clientes")" class="btn btn-outline-secondary px-4 py-2">
+                <a href="@Url.Action("Index", "Directions")" class="btn btn-outline-secondary px-4 py-2">
                     <i class="fas fa-arrow-left"></i> Volver a la lista
                 </a>
-                <a href="@Url.Action("Edit", "Clientes", new { id = Model.Id })" class="btn btn-secondary text-white px-4 py-2 ms-2">
+                <a href="@Url.Action("Edit", "Directions", new { id = Model.Id })" class="btn btn-secondary text-white px-4 py-2 ms-2">
                     <i class="fas fa-edit"></i> Editar
                 </a>
-                <a href="@Url.Action("ConfirmDelete", "Clientes", new { id = Model.Id })" class="btn btn-danger px-4 py-2 ms-2">
+                <a href="@Url.Action("ConfirmDelete", "Directions", new { id = Model.Id })" class="btn btn-danger px-4 py-2 ms-2">
                     <i class="fas fa-trash-alt"></i> Eliminar
                 </a>
             </div>

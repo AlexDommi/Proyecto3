@@ -1,6 +1,6 @@
-﻿@model Proyecto3.DTOs.CustomersReadDTO
+﻿@model Proyecto3.DTOs.DirectionsReadDTO
 @{
-    ViewData["Title"] = "Eliminar Cliente";
+    ViewData["Title"] = "Eliminar Direccion";
 }
 
 <div class="container mt-5">
@@ -10,17 +10,32 @@
         </div>
         <div class="card-body p-4">
             <h5 class="text-center text-danger fw-bold">
-                <i class="fas fa-exclamation-triangle"></i> ¿Estás seguro de que deseas eliminar este producto?
+                <i class="fas fa-exclamation-triangle"></i> ¿Estás seguro de que deseas eliminar esta direccion?
             </h5>
 
             <div class="row mt-4">
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClienteNombre):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.ClienteNombre)</dd>
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Id):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.Id)</dd>
 
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClienteApellidos):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.ClienteApellidos)</dd>
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionColonia):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionColonia)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCalle):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCalle)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle1):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle1)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle2):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle2)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCodigoPostal):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCodigoPostal)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClientesId):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.ClientesId)</dd>
                     </dl>
                 </div>
 
@@ -38,7 +53,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="@Url.Action("Index", "Clientes")" class="btn btn-outline-secondary px-4 py-2">
+                <a href="@Url.Action("Index", "Directions")" class="btn btn-outline-secondary px-4 py-2">
                     <i class="fas fa-arrow-left"></i> Cancelar
                 </a>
                 <button type="submit" form="delete-form" class="btn btn-danger px-4 py-2 ms-2">
@@ -48,5 +63,5 @@
         </div>
     </div>
 
-    <form id="delete-form" method="post" action="@Url.Action("Delete", "Clientes", new { id = Model.Id })" class="d-none"></form>
+    <form id="delete-form" method="post" action="@Url.Action("Delete", "Directions", new { id = Model.Id })" class="d-none"></form>
 </div>
