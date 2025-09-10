@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Proyecto3.Data;
 using Proyecto3.Services.Interfaces;
 using Proyecto3.Services.Implementations;
+using Proyecto3.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IAgreementsService,AgreementsService>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<IDirectionsServices, DirectionsServices>();
-builder.Services.AddScoped<IContactsService, ContactsService>();
-
-/*builder.Services.AddScoped<IFollowupsService, FollowupsService>();
-builder.Services.AddScoped<IMailsService, MailsService>();
-;*/
+builder.Services.Configure<UploadSettings>(builder.Configuration.GetSection("UploadSettings"));
 #endregion Servicios
 
 >>>>>>> Stashed changes

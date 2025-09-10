@@ -1,0 +1,13 @@
+﻿@model Proyecto3.DTOs.CustomersReadDTO
+@{
+    Layout = null;
+}
+
+<div>
+    <p><strong>Id:</strong> @Model.Id</p>
+    <p><strong>Nombre:</strong> @Model.ClienteNombre</p>
+    <p><strong>Apellidos:</strong> @Model.ClienteApellidos</p>
+    <p><strong>Activo:</strong> @(Model.Activo ? "Sí" : "No")</p>
+    <p><strong>Hora Alta:</strong> @Model.HoraAlta.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Logo:</strong> <img src="@Model.LogoUrl" width="100" /></p>
+</div>

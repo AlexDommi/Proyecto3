@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Eliminar Cliente";
+﻿@model Proyecto3.DTOs.DirectionsReadDTO
+@{
+    ViewData["Title"] = "Eliminar Direccion";
 }
 
 <div class="container mt-5">
@@ -9,7 +10,7 @@
         </div>
         <div class="card-body p-4">
             <h5 class="text-center text-danger fw-bold">
-                <i class="fas fa-exclamation-triangle"></i> ¿Estás seguro de que deseas eliminar este producto?
+                <i class="fas fa-exclamation-triangle"></i> ¿Estás seguro de que deseas eliminar esta direccion?
             </h5>
 
             <div class="row mt-4">
@@ -33,11 +34,8 @@
                         <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCodigoPostal):</dt>
                         <dd class="col-7">@Html.DisplayFor(model => model.DireccionCodigoPostal)</dd>
 
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.HoraAlta):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.HoraAlta)</dd>
-
-                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Activo):</dt>
-                        <dd class="col-7">@Html.DisplayFor(model => model.Activo)</dd>
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ClientesId):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.ClientesId)</dd>
                     </dl>
                 </div>
 

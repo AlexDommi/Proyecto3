@@ -1,8 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
-using Proyecto3.Services.Implementations;
 using Proyecto3.Services.Interfaces;
 
 namespace Proyecto3.Controllers
@@ -10,15 +8,12 @@ namespace Proyecto3.Controllers
     public class ContactsController : Controller
     {
         private readonly IContactsService _ContactsService;
-        private readonly ICustomersService _customersService;
 
         public ContactsController(
-            IContactsService contactsService,
-            ICustomersService customersServices
+            IContactsService contactsService
             )
         {
             _ContactsService = contactsService;
-            _customersService = customersServices;
         }
 
         //Accion para obtener todos losclientes
@@ -39,7 +34,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "No se encontro el detalle";
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound;
                 return RedirectToAction("Index");
             }
         }
@@ -47,56 +42,34 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                var directionsDTO = await _ContactsService.GetByIdAsync(id);
-                var clientes = await _customersService.GetAllAsync();
+                ContactsReadDTO contacts = await _ContactsService.GetByIdAsync(id);
+                var contactsdto = contacts.Adapt<ContactsCreateDTO>();
 
-                var directionsCreateDto = directionsDTO.Adapt<DirectionsCreateDTO>();
-
-                // Pasamos la lista completa
-                directionsCreateDto.Clientes = clientes;
-
-                return View(directionsCreateDto);
+                return View(contactsdto);
             }
-            catch (ApplicationException)
+            catch (Exception)
             {
-                TempData["ErrorMessage"] = "No se pudo cargar el registro";
+                TempData["ErrorMessage"] = "Error al modificar registro";
                 return RedirectToAction("Index");
             }
         }
-
-        // Acción para mostrar el formulario de agregar producto
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            var clientes = await _ContactsService.GetAllAsync();
-            ViewBag.Clientes = new SelectList(clientes, "Id", "ClienteNombre");
-
-            return View();
-        }
-
-        // Acción para procesar el formulario de agregar producto
-        [HttpPost]
-        public async Task<IActionResult> Create(ContactsCreateDTO directionsCreateDTO)
+        public async Task<IActionResult> Create(ContactsCreateDTO contacts)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //throw new ApplicationException("Ejemplo");
-                    await _ContactsService.AddAsync(directionsCreateDTO);
-                    TempData["SuccessMessage"] = "Registro exitoso";
+                    await _ContactsService.AddAsync(contacts);
+                    TempData["SuccessMessage"] = Messages.Success.RecordCreated;
                     return RedirectToAction("Index");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                TempData["ErrorMessage"] = "Error al registrar";
+
+                TempData["ErrorMessage"] = Messages.Error.CustomersCreateError;
             }
-
-            var clientes = await _ContactsService.GetAllAsync();
-            ViewBag.Clientes = new SelectList(clientes, "Id", "ClienteNombre");
-
-            return View(directionsCreateDTO);
+            return View(contacts);
         }
 
         // Acción para procesar el formulario de edición de producto
@@ -108,13 +81,13 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _ContactsService.UpdateAsync(contacts.Id, contacts);
-                    TempData["SuccessMessage"] = "Registro actualizado existosamente";
+                    TempData["SuccessMessage"] = Messages.Success.RecordUpdated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
             }
 
             return View(contacts);
@@ -130,7 +103,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
                 return RedirectToAction("Index");
             }
         }
@@ -143,11 +116,11 @@ namespace Proyecto3.Controllers
             try
             {
                 await _ContactsService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro eliminado";
+                TempData["SuccessMessage"] = Messages.Success.RecordDeleted;
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
             }
 
             return RedirectToAction("Index");

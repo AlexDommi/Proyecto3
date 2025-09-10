@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using EcommerceMVC.Constants;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto3.DTOs;
 using Proyecto3.Services.Interfaces;
@@ -34,7 +35,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "No se encontro el detalle";
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound;
                 return RedirectToAction("Index");
             }
         }
@@ -49,7 +50,7 @@ namespace Proyecto3.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
                 return RedirectToAction("Index");
             }
         }
@@ -60,14 +61,14 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _agreementsService.AddAsync(result);
-                    TempData["SuccessMessage"] = "Registro agregado exitosamente!";
+                    TempData["SuccessMessage"] = Messages.Error.RecordUpdateError;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Error al crear el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordCreatedError;
             }
             return View(result);
         }
@@ -81,13 +82,13 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _agreementsService.UpdateAsync(result.Id, result);
-                    TempData["SuccessMessage"] = "Registro actualizado existosamente";
+                    TempData["SuccessMessage"] = Messages.Success.RecordCreated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
             }
 
             return View(result);
@@ -99,11 +100,11 @@ namespace Proyecto3.Controllers
             try
             {
                 var result = await _agreementsService.GetByIdAsync(id);
-                return View(result); // Muestra la vista de confirmación
+                return View(result); 
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
                 return RedirectToAction("Index");
             }
         }
@@ -116,11 +117,11 @@ namespace Proyecto3.Controllers
             try
             {
                 await _agreementsService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro eliminado";
+                TempData["SuccessMessage"] = Messages.Success.RecordDeleted;
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
             }
 
             return RedirectToAction("Index");

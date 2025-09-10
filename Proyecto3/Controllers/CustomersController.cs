@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using EcommerceMVC.Constants;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
@@ -32,14 +33,17 @@ namespace Proyecto3.Controllers
             {
                 var cliente = await _clientesService.GetByIdAsync(id);
                 return View(cliente);
+                //return PartialView("_Details", cliente);
 
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "No se encontro el detalle";
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound;
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -51,7 +55,7 @@ namespace Proyecto3.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
                 return RedirectToAction("Index");
             }
         }
@@ -59,21 +63,35 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    await _clientesService.AddAsync(altaClientesDTO);
-                    TempData["SuccessMessage"] = "Cliente agregado exitosamente!";
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception)
-            {
+                    if (!ModelState.IsValid)
+                    {
+                        return View(altaClientesDTO);
+                    }
 
-                TempData["ErrorMessage"] = "Error al crear el cliente";
+                    if (altaClientesDTO.File == null || altaClientesDTO.File.Length == 0)
+                    {
+                        ModelState.AddModelError("File", "Debe seleccionar un archivo.");
+                        return View(altaClientesDTO);
+                    }
+
+                    await _clientesService.AddAsync(altaClientesDTO);
+                    TempData["SuccessMessage"] = Messages.Success.CustomersCreated;
+                    return RedirectToAction("Index");
+                
             }
+            catch (NotSupportedException ex)
+            {
+                ModelState.AddModelError("File", ex.Message); // Muestra que el tipo de archivo no es soportado
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = Messages.Error.RecordCreatedError;
+            }
+
             return View(altaClientesDTO);
         }
 
+     
         // Acción para procesar el formulario de edición de producto
         [HttpPost]
         public async Task<IActionResult> Edit(CustomersCreateDTO altaClientesDTO)
@@ -83,13 +101,13 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _clientesService.UpdateAsync(altaClientesDTO.Id, altaClientesDTO);
-                    TempData["SuccessMessage"] = "Registro actualizado existosamente";
+                    TempData["SuccessMessage"] = Messages.Success.RecordUpdated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.CustomersCreateError;
             }
 
             return View(altaClientesDTO);
@@ -105,7 +123,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
                 return RedirectToAction("Index");
             }
         }
@@ -118,14 +136,21 @@ namespace Proyecto3.Controllers
             try
             {
                 await _clientesService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro eliminado";
+                TempData["SuccessMessage"] = Messages.Error.RecordDeleteError;
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
             }
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DetailsPartial(int id)
+        {
+            var cliente = await _clientesService.GetByIdAsync(id);
+            return PartialView("_Details", cliente); // CustomersReadDTO
+        }
+
     }
 }

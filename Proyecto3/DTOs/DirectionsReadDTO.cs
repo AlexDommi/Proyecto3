@@ -25,5 +25,7 @@ namespace Proyecto3.DTOs
 
         [Display(Name = "Cliente")]
         public int ClientesId { get; set; }
+
+        public IEnumerable<CustomersReadDTO> Clientes { get; set; } = new List<CustomersReadDTO>();
     }
 }

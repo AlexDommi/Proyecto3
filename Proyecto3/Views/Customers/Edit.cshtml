@@ -1,7 +1,7 @@
 ﻿@model Proyecto3.DTOs.CustomersCreateDTO
 
 @{
-    ViewData["Title"] = "Editar Cliente";
+    ViewData["Title"] = "Editar Direccion";
 }
 
 <div class="container mt-5">
@@ -12,17 +12,23 @@
         <div class="card-body p-4">
             @await Html.PartialAsync("_Alerts")
 
-            <form method="post" class="p-3">
+            <form method="post" enctype="multipart/form-data" class="p-3">
                 <div class="mb-3">
                     <label asp-for="ClienteNombre" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="ClienteNombre" class="form-control form-control-lg" placeholder="Ingrese el nombre del producto" />
+                    <input asp-for="ClienteNombre" type="text" class="form-control form-control-lg" placeholder="Ingrese su nombre" />
                     <span asp-validation-for="ClienteNombre" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="ClienteApellidos" class="form-label fs-5 fw-semibold"></label>
-                    <textarea asp-for="ClienteApellidos" class="form-control form-control-lg" placeholder="Ingrese la descripción del producto"></textarea>
+                    <textarea asp-for="ClienteApellidos" class="form-control form-control-lg" placeholder="Ingrese sus apellidos"></textarea>
                     <span asp-validation-for="ClienteApellidos" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="File">Cargar imagen</label>
+                    <input asp-for="File" />
+                    <span asp-validation-for="File" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3 form-check">

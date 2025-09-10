@@ -1,7 +1,7 @@
 ﻿@model Proyecto3.DTOs.DirectionsCreateDTO
 
 @{
-    ViewData["Title"] = "Agregar Direccion";
+    ViewData["Title"] = "Agregar Dirección";
 }
 
 <div class="container mt-5">
@@ -15,32 +15,32 @@
             <form method="post" class="p-3">
                 <div class="mb-3">
                     <label asp-for="DireccionCalle" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionCalle" class="form-control form-control-lg" placeholder="Ingrese el nombre del producto" />
+                    <input asp-for="DireccionCalle" type="text" class="form-control form-control-lg" placeholder="Ingrese la calle" />
                     <span asp-validation-for="DireccionCalle" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="DireccionColonia" class="form-label fs-5 fw-semibold"></label>
-                    <textarea asp-for="DireccionColonia" class="form-control form-control-lg" placeholder="Ingrese la descripción del producto"></textarea>
-                    <span asp-validation-for="DireccionColonia" class="text-danger small"></span>
-                </div>
-
-                <div class="mb-3">
                     <label asp-for="DireccionEntreCalle1" class="form-label fs-5 fw-semibold"></label>
-                    <textarea asp-for="DireccionEntreCalle1" class="form-control form-control-lg" placeholder="Ingrese la descripción del producto"></textarea>
+                    <input asp-for="DireccionEntreCalle1" type="text" class="form-control form-control-lg" placeholder="Ingrese la entre calle 1" />
                     <span asp-validation-for="DireccionEntreCalle1" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="DireccionEntreCalle2" class="form-label fs-5 fw-semibold"></label>
-                    <textarea asp-for="DireccionEntreCalle2" class="form-control form-control-lg" placeholder="Ingrese la descripción del producto"></textarea>
+                    <input asp-for="DireccionEntreCalle2" type="text" class="form-control form-control-lg" placeholder="Ingrese la entre calle 2" />
                     <span asp-validation-for="DireccionEntreCalle2" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="DireccionCodigoPostal" class="form-label fs-5 fw-semibold"></label>
-                    <textarea asp-for="DireccionCodigoPostal" class="form-control form-control-lg" placeholder="Ingrese la descripción del producto"></textarea>
+                    <input asp-for="DireccionCodigoPostal" type="text" class="form-control form-control-lg" placeholder="Ingrese el código postal" />
                     <span asp-validation-for="DireccionCodigoPostal" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DireccionColonia" class="form-label fs-5 fw-semibold"></label>
+                    <input asp-for="DireccionColonia" type="text" class="form-control form-control-lg" placeholder="Ingrese la colonia" />
+                    <span asp-validation-for="DireccionColonia" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
