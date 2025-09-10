@@ -1,0 +1,15 @@
+﻿@model Proyecto3.DTOs.DirectionsReadDTO
+@{
+    Layout = null;
+}
+
+<div>
+    <p><strong>Id:</strong> @Model.Id</p>
+    <p><strong>Nombre:</strong> @Model.DireccionCalle</p>
+    <p><strong>Apellidos:</strong> @Model.DireccionEntreCalle1</p>
+    <p><strong>Apellidos:</strong> @Model.DireccionEntreCalle2</p>
+    <p><strong>Apellidos:</strong> @Model.DireccionColonia</p>
+    <p><strong>Apellidos:</strong> @Model.DireccionCodigoPostal</p>
+    <p><strong>Activo:</strong> @(Model.Activo ? "Sí" : "No")</p>
+    <p><strong>Hora Alta:</strong> @Model.HoraAlta.ToString("dd/MM/yyyy HH:mm")</p>
+</div>

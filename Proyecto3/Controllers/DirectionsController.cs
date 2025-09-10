@@ -142,6 +142,12 @@ namespace Proyecto3.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DetailsPartial(int id)
+        {
+            var directions = await _directionService.GetByIdAsync(id);
+            return PartialView("_Details", directions); // CustomersReadDTO
+        }
     }
 }
 
