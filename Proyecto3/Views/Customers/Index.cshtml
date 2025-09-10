@@ -20,6 +20,7 @@
                     <th> # </th>
                     <th>@Html.DisplayNameFor(m => m.ClienteNombre) </th>
                     <th>@Html.DisplayNameFor(m => m.ClienteApellidos)</th>
+                    <th>@Html.DisplayNameFor(m => m.LogoUrl)</th>
                     <th>@Html.DisplayNameFor(m => m.Activo)</th>
                     <th>@Html.DisplayNameFor(m => m.HoraAlta)</th>
                     <th>Acciones</th>
@@ -34,6 +35,7 @@
                             <td>@(num++)</td>
                             <td>@item.ClienteNombre</td>
                             <td>@item.ClienteApellidos</td>
+                            <td><img src="@item.LogoUrl" alt="Logo" width="100" /></td>
                             <td>
                                 <i class="@(item.Activo ? "fas fa-check text-success" : "fas fa-times text-danger")"></i>
                             </td>
@@ -82,18 +84,19 @@
         $(".ver-detalle").click(function () {
             var id = $(this).data("id");
 
-            $.ajax({
-                url: '@Url.Action("Details", "Directions")',
+                $.ajax({
+                url: '@Url.Action("DetailsPartial", "Customers")', // <--- aquí
                 data: { id: id },
                 type: "GET",
                 success: function (result) {
-                    $("#detalleModalBody").html(result); // carga solo el detalle
-                    $("#detalleModal").modal("show");    // abre el modal
+                    $("#detalleModalBody").html(result);
+                    $("#detalleModal").modal("show");
                 },
                 error: function () {
                     alert("Error al cargar los detalles.");
                 }
             });
+
         });
     });
 </script>

@@ -11,6 +11,8 @@ namespace Proyecto3.Models
         [Required]
         public string ClienteApellidos { get; set; }
 
+        public string LogoUrl { get; set; }
+
         public IEnumerable<Agreements> Acuerdos { get; set; }
         public IEnumerable<Contacts> Contactos { get; set; }
         public IEnumerable<Mails> Correos { get; set; }

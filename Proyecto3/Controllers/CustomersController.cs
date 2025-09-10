@@ -33,7 +33,7 @@ namespace Proyecto3.Controllers
             {
                 var cliente = await _clientesService.GetByIdAsync(id);
                 return View(cliente);
-                return PartialView("_Details", cliente);
+                //return PartialView("_Details", cliente);
 
             }
             catch (ApplicationException ex)
@@ -63,21 +63,35 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+                    if (!ModelState.IsValid)
+                    {
+                        return View(altaClientesDTO);
+                    }
+
+                    if (altaClientesDTO.File == null || altaClientesDTO.File.Length == 0)
+                    {
+                        ModelState.AddModelError("File", "Debe seleccionar un archivo.");
+                        return View(altaClientesDTO);
+                    }
+
                     await _clientesService.AddAsync(altaClientesDTO);
                     TempData["SuccessMessage"] = Messages.Success.CustomersCreated;
                     return RedirectToAction("Index");
-                }
+                
             }
-            catch (Exception)
+            catch (NotSupportedException ex)
             {
-
-                TempData["ErrorMessage"] = Messages.Error.CustomersCreateError;
+                ModelState.AddModelError("File", ex.Message); // Muestra que el tipo de archivo no es soportado
             }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = Messages.Error.RecordCreatedError;
+            }
+
             return View(altaClientesDTO);
         }
 
+     
         // Acción para procesar el formulario de edición de producto
         [HttpPost]
         public async Task<IActionResult> Edit(CustomersCreateDTO altaClientesDTO)
@@ -131,5 +145,12 @@ namespace Proyecto3.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DetailsPartial(int id)
+        {
+            var cliente = await _clientesService.GetByIdAsync(id);
+            return PartialView("_Details", cliente); // CustomersReadDTO
+        }
+
     }
 }

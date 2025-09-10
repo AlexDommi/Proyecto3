@@ -15,6 +15,6 @@ namespace Proyecto3.DTOs
         [Display(Name = "Apellidos")]
         public string ClienteApellidos { get; set; }
 
-       
+        public IFormFile File { get; set; }
     }
 }

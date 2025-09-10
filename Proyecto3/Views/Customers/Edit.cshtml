@@ -1,4 +1,4 @@
-﻿@model Proyecto3.DTOs.DirectionsCreateDTO
+﻿@model Proyecto3.DTOs.CustomersCreateDTO
 
 @{
     ViewData["Title"] = "Editar Direccion";
@@ -12,43 +12,29 @@
         <div class="card-body p-4">
             @await Html.PartialAsync("_Alerts")
 
-            <form method="post" class="p-3">
+            <form method="post" enctype="multipart/form-data" class="p-3">
                 <div class="mb-3">
-                    <label asp-for="DireccionCalle" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionCalle" type="text" class="form-control form-control-lg" placeholder="Ingrese la calle" />
-                    <span asp-validation-for="DireccionCalle" class="text-danger small"></span>
+                    <label asp-for="ClienteNombre" class="form-label fs-5 fw-semibold"></label>
+                    <input asp-for="ClienteNombre" type="text" class="form-control form-control-lg" placeholder="Ingrese su nombre" />
+                    <span asp-validation-for="ClienteNombre" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="DireccionEntreCalle1" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionEntreCalle1" type="text" class="form-control form-control-lg" placeholder="Ingrese la entre calle 1" />
-                    <span asp-validation-for="DireccionEntreCalle1" class="text-danger small"></span>
+                    <label asp-for="ClienteApellidos" class="form-label fs-5 fw-semibold"></label>
+                    <textarea asp-for="ClienteApellidos" class="form-control form-control-lg" placeholder="Ingrese sus apellidos"></textarea>
+                    <span asp-validation-for="ClienteApellidos" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="DireccionEntreCalle2" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionEntreCalle2" type="text" class="form-control form-control-lg" placeholder="Ingrese la entre calle 2" />
-                    <span asp-validation-for="DireccionEntreCalle2" class="text-danger small"></span>
+                    <label asp-for="File">Cargar imagen</label>
+                    <input asp-for="File" />
+                    <span asp-validation-for="File" class="text-danger small"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="DireccionCodigoPostal" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionCodigoPostal" type="text" class="form-control form-control-lg" placeholder="Ingrese el código postal" />
-                    <span asp-validation-for="DireccionCodigoPostal" class="text-danger small"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="DireccionColonia" class="form-label fs-5 fw-semibold"></label>
-                    <input asp-for="DireccionColonia" type="text" class="form-control form-control-lg" placeholder="Ingrese la colonia" />
-                    <span asp-validation-for="DireccionColonia" class="text-danger small"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="ClientesId" class="form-label fs-5 fw-semibold"></label>
-                    <select asp-for="ClientesId" asp-items="ViewBag.Clientes" class="form-select form-select-lg">
-                        <option value="">Selecciona un Cliente</option>
-                    </select>
-                    <span asp-validation-for="ClientesId" class="text-danger small"></span>
+                <div class="mb-3 form-check">
+                    <input asp-for="Activo" type="checkbox" class="form-check-input" />
+                    <label asp-for="Activo" class="form-check-label fs-5 fw-semibold"></label>
+                    <span asp-validation-for="Activo" class="text-danger small d-block"></span>
                 </div>
 
                 <div class="text-center mt-4">
