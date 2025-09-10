@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Proyecto3.Data;
+using Proyecto3.Services.Interfaces;
+using Proyecto3.Services.Implementations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 <<<<<<< Updated upstream

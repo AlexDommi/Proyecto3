@@ -51,11 +51,17 @@ namespace Proyecto3.Controllers
             ViewBag.Clientes = new SelectList(clientes, "Id", "ClienteNombre");
 
             return View();
-        }
+            }
 
         // Acción para procesar el formulario de agregar producto
         [HttpPost]
         public async Task<IActionResult> Create(DirectionsCreateDTO directionsCreateDTO)
+            {
+                TempData["ErrorMessage"] = "Error al modificar registro";
+                return RedirectToAction("Index");
+            }
+        }
+        public async Task<IActionResult> Create(AgreementsCreateDTO result)
         {
             try
             {
@@ -81,7 +87,7 @@ namespace Proyecto3.Controllers
         // Acción para mostrar el formulario de edición de un producto
         // GET: Edit
         public async Task<IActionResult> Edit(int id)
-        {
+            {
             try
             {
                 var directionsDTO = await _directionService.GetByIdAsync(id);
@@ -98,7 +104,7 @@ namespace Proyecto3.Controllers
             {
                 TempData["ErrorMessage"] = "No se pudo cargar el registro";
                 return RedirectToAction("Index");
-            }
+        }
         }
 
         // POST: Edit
