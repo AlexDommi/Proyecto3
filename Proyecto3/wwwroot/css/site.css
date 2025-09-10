@@ -20,3 +20,51 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Tema claro por defecto */
+body
+{
+    background-color: #ffffff;
+    
+}
+h1 {
+    color: black;
+}
+nav{
+    background-color:black;
+}
+    /* Tema oscuro */
+body.dark-mode {
+    background-color: #5C636A;
+    color: #f5f5f5;
+}
+
+/* Ejemplo de enlaces */
+a {
+    color: #1a73e8;
+}
+
+body.dark-mode a,
+body.dark-mode td,
+body.dark-mode h1,
+body.dark-mode th,
+body.dark-mode button,
+body.dark-mode a > i,
+body.dark-mode .btn.btn-success,
+body.dark-mode .btn.btn-sm.btn-danger.m-2,
+body.dark-mode .btn.btn-sm.btn-secondary.m-2{
+    color: white;
+}
+/*
+body.dark-mode btnCancel {
+    color:black;
+}*/
+
+    body.dark-mode label,
+    body.dark-mode p,
+    body.dark-mode dt,
+    body.dark-mode dd,
+    body.dark-mode a.btn,
+    body.dark-mode i.fas.fa-arrow-left {
+        color: black;
+    }

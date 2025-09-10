@@ -49,7 +49,9 @@
                             <td>@item.HoraAlta</td>
                             <td>
                                 <div class="btn-group">
-
+                                    <button class="btn btn-info btn-sm ver-detalle m-2" data-id="@item.Id">
+                                        Ver detalle
+                                    </button>
                                     <a href="@Url.Action("Edit", "Directions", new { id = item.Id })"
                                        class="btn btn-sm btn-secondary m-2">
                                         <i class="fa-solid fa-pencil"></i> Editar
@@ -71,5 +73,37 @@
                 }
             </tbody>
         </table>
+        <div class="modal fade" id="detalleModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body" id="detalleModalBody">
+                        <!-- Modallll alv -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $(".ver-detalle").click(function () {
+            var id = $(this).data("id");
+
+                $.ajax({
+                url: '@Url.Action("DetailsPartial", "Directions")',
+                data: { id: id },
+                type: "GET",
+                success: function (result) {
+                    $("#detalleModalBody").html(result);
+                    $("#detalleModal").modal("show");
+                },
+                error: function () {
+                    alert("Error al cargar los detalles.");
+                }
+            });
+
+        });
+    });
+</script>
+}
