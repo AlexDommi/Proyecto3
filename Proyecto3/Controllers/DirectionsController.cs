@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using EcommerceMVC.Constants;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
@@ -38,7 +39,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "Error";
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound;
                 return RedirectToAction("Index");
             }
         }
@@ -62,15 +63,14 @@ namespace Proyecto3.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //throw new ApplicationException("Ejemplo");
                     await _directionService.AddAsync(directionsCreateDTO);
-                    TempData["SuccessMessage"] = "Registro exitoso";
+                    TempData["SuccessMessage"] = Messages.Success.DirectionsCreated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al registrar";
+                TempData["ErrorMessage"] = Messages.Error.RecordCreatedError;
             }
 
             var clientes = await _customersService.GetAllAsync();
@@ -93,7 +93,7 @@ namespace Proyecto3.Controllers
             return View(directionsCreateDto);
         }
 
-        // Edit POST (si falla la validación recarga la lista)
+
         [HttpPost]
         public async Task<IActionResult> Edit(DirectionsCreateDTO directionsCreateDTO)
         {
@@ -114,11 +114,11 @@ namespace Proyecto3.Controllers
             try
             {
                 var product = await _directionService.GetByIdAsync(id);
-                return View(product); // Muestra la vista de confirmación
+                return View(product); 
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "No se pudo borrar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
                 return RedirectToAction("Index");
             }
         }
@@ -131,11 +131,11 @@ namespace Proyecto3.Controllers
             try
             {
                 await _directionService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro borrado con exito";
+                TempData["SuccessMessage"] = Messages.Success.RecordDeleted;
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "No se pudo borrar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
             }
 
             return RedirectToAction("Index");
