@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Proyecto3.DTOs.ContactsReadDTO>
+
+@{
+    ViewData["Title"] = "Listado de Contactos";
+    int num = 1;
+}
+@await Html.PartialAsync("_Alerts")
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>@ViewData["Title"]</h1>
+            <a href="@Url.Action("Create", "Contacts")" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Agregar Direccion
+            </a>
+            @* <h2>@ViewBag.Subtitulo</h2> *@
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th>@Html.DisplayNameFor(m => m.Id) </th>
+                    <th>@Html.DisplayNameFor(m => m.ClientesId) </th>
+                    <th>@Html.DisplayNameFor(m => m.ContactoTelefono)</th>
+                    <th>@Html.DisplayNameFor(m => m.Activo)</th>
+                    <th>@Html.DisplayNameFor(m => m.HoraAlta)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(num++)</td>
+                            <td>@item.Id</td>
+                            <td>@item.ClientesId</td>
+                            <td>@item.ContactoTelefono</td>
+                            <td>
+                                <i class="@(item.Activo ? "fas fa-check text-success" : "fas fa-times text-danger")"></i>
+                            </td>
+                            <td>@item.HoraAlta</td>
+
+                            <td>
+                                <div class="btn-group">
+
+                                    <a href="@Url.Action("Edit", "Contacts", new { id = item.Id })"
+                                       class="btn btn-sm btn-secondary m-2">
+                                        <i class="fa-solid fa-pencil"></i> Editar
+                                    </a>
+
+                                    <a href="@Url.Action("Details", "Contacts", new { id = item.Id })"
+                                       class="btn btn-sm btn-info m-2">
+                                        <i class="fa-solid fa-circle-info"></i> Detalles
+                                    </a>
+
+                                    <a href="@Url.Action("ConfirmDelete", "Contacts", new { id = item.Id })"
+                                       class="btn btn-sm btn-danger m-2">
+                                        <i class="fa-solid fa-trash"></i> Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model Proyecto3.DTOs.DirectionsReadDTO
+
+@{
+    ViewData["Title"] = "Detalles de la direccion";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white text-center py-3">
+            <h3 class="mb-0">@ViewData["Title"]</h3>
+        </div>
+        <div class="card-body p-4">
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCalle):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCalle)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle1):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle1)</dd>
+                        
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionEntreCalle2):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionEntreCalle2)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionColonia):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionColonia)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.DireccionCodigoPostal):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.DireccionCodigoPostal)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.HoraAlta):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.HoraAlta)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Activo):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.Activo)</dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.HoraAlta):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.HoraAlta)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Activo):</dt>
+                        <dd class="col-7">
+                            <i class="@(Model.Activo ? "fas fa-check text-success" : "fas fa-times text-danger")"></i>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "Directions")" class="btn btn-outline-secondary px-4 py-2">
+                    <i class="fas fa-arrow-left"></i> Volver a la lista
+                </a>
+                <a href="@Url.Action("Edit", "Directions", new { id = Model.Id })" class="btn btn-secondary text-white px-4 py-2 ms-2">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <a href="@Url.Action("ConfirmDelete", "Directions", new { id = Model.Id  })" class="btn btn-danger px-4 py-2 ms-2">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

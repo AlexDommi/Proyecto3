@@ -29,6 +29,7 @@
                 </div>
             </div>
         </nav>
+        <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -45,5 +46,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await Html.PartialAsync("_ValidationScriptsPartial");
 </body>
 </html>

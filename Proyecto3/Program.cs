@@ -1,5 +1,24 @@
 var builder = WebApplication.CreateBuilder(args);
 
+<<<<<<< Updated upstream
+=======
+var connection = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connection));
+
+#region Servicios
+builder.Services.AddScoped<IAgreementsService,AgreementsService>();
+builder.Services.AddScoped<ICustomersService, CustomersService>();
+builder.Services.AddScoped<IDirectionsServices, DirectionsServices>();
+builder.Services.AddScoped<IContactsService, ContactsService>();
+
+/*builder.Services.AddScoped<IFollowupsService, FollowupsService>();
+builder.Services.AddScoped<IMailsService, MailsService>();
+;*/
+#endregion Servicios
+
+>>>>>>> Stashed changes
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
