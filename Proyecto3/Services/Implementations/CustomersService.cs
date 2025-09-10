@@ -50,7 +50,7 @@ namespace Proyecto3.Services.Implementations
             return clienteid;
         }
 
-        public async Task AddAsync(CustomersCreatedDTO AddDTO)
+        public async Task AddAsync(CustomersCreateDTO AddDTO)
         {
             var cliente = new Customers
             {
@@ -78,7 +78,7 @@ namespace Proyecto3.Services.Implementations
             await _context.SaveChangesAsync();
 
         }
-        public async Task UpdateAsync(int id, CustomersCreatedDTO dto)
+        public async Task UpdateAsync(int id, CustomersCreateDTO dto)
         {
             var clientes = await _context.Clientes.FindAsync(id);
             clientes.ClienteNombre= dto.ClienteNombre;

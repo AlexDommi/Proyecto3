@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Proyecto3.Models
+namespace Proyecto3.DTOs
 {
-    public class Contacts : Registry
+    public class ContactsReadDTO : RegistryDTO
     {
         public int Id { get; set; }
-        [Required]
+
+        [Display(Name = "Nombre")]
         public string ContactoTelefono { get; set; }
 
         public int ClientesId { get; set; }
-        public Customers Clientes { get; set; }
+        public int Customers { get; set; }
 
     }
 }

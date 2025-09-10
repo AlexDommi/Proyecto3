@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto3.DTOs
 {
-    public class CustomersCreatedDTO : RegistryDTO
+    public class CustomersCreateDTO : RegistryDTO
     {
         public int Id { get; set; }
 

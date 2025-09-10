@@ -1,37 +1,35 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
-using Proyecto3.Models;
 using Proyecto3.Services.Interfaces;
 
 namespace Proyecto3.Controllers
 {
-    public class ClientesController : Controller
+    public class AgreementsController : Controller
     {
-        private readonly ICustomersService _clientesService;
+        private readonly IAgreementsService _agreementsService;
 
-        public ClientesController(
-            ICustomersService clientesService
+        public AgreementsController(
+            IAgreementsService agreementsService
             )
         {
-            _clientesService = clientesService;
+            _agreementsService = agreementsService;
         }
 
-        //Accion para obtener todos losclientes
         public async Task<IActionResult> Index()
         {
-            var clientes = await _clientesService.GetAllAsync();
-            return View(clientes);
+            var agreements = await _agreementsService.GetAllAsync();
+            return View(agreements);
         }
+
 
         //Mostrar Cliente por ID
         public async Task<IActionResult> Details(int id)
         {
             try
             {
-                var cliente = await _clientesService.GetByIdAsync(id);
-                return View(cliente);
+                var result = await _agreementsService.GetByIdAsync(id);
+                return View(result);
 
             }
             catch (ApplicationException ex)
@@ -44,10 +42,10 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                CustomersReadDTO clientes = await _clientesService.GetByIdAsync(id);
-                var clientesdto = clientes.Adapt<CustomersCreatedDTO>();
+                AgreementsReadDTO result = await _agreementsService.GetByIdAsync(id);
+                var result2 = result.Adapt<AgreementsCreateDTO>();
 
-                return View(clientesdto);
+                return View(result2);
             }
             catch (Exception)
             {
@@ -55,34 +53,34 @@ namespace Proyecto3.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public async Task<IActionResult> Create(CustomersCreatedDTO altaClientesDTO)
+        public async Task<IActionResult> Create(AgreementsCreateDTO result)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await _clientesService.AddAsync(altaClientesDTO);
-                    TempData["SuccessMessage"] = "Cliente agregado exitosamente!";
+                    await _agreementsService.AddAsync(result);
+                    TempData["SuccessMessage"] = "Registro agregado exitosamente!";
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Error al crear el cliente";
+                TempData["ErrorMessage"] = "Error al crear el registro";
             }
-            return View(altaClientesDTO);
+            return View(result);
         }
 
         // Acción para procesar el formulario de edición de producto
         [HttpPost]
-        public async Task<IActionResult> Edit(CustomersCreatedDTO altaClientesDTO)
+        public async Task<IActionResult> Edit(AgreementsCreateDTO result)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await _clientesService.UpdateAsync(altaClientesDTO.Id, altaClientesDTO);
+                    await _agreementsService.UpdateAsync(result.Id, result);
                     TempData["SuccessMessage"] = "Registro actualizado existosamente";
                     return RedirectToAction("Index");
                 }
@@ -92,7 +90,7 @@ namespace Proyecto3.Controllers
                 TempData["ErrorMessage"] = "Error al modificar registro";
             }
 
-            return View(altaClientesDTO);
+            return View(result);
         }
 
         // Acción para mostrar la confirmación de eliminación
@@ -100,8 +98,8 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                var product = await _clientesService.GetByIdAsync(id);
-                return View(product); // Muestra la vista de confirmación
+                var result = await _agreementsService.GetByIdAsync(id);
+                return View(result); // Muestra la vista de confirmación
             }
             catch (ApplicationException e)
             {
@@ -117,7 +115,7 @@ namespace Proyecto3.Controllers
         {
             try
             {
-                await _clientesService.DeleteAsync(id);
+                await _agreementsService.DeleteAsync(id);
                 TempData["SuccessMessage"] = "Registro eliminado";
             }
             catch (Exception e)
