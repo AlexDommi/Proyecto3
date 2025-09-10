@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using EcommerceMVC.Constants;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto3.DTOs;
@@ -36,7 +37,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException ex)
             {
-                TempData["ErrorMessage"] = "No se encontro el detalle";
+                TempData["ErrorMessage"] = Messages.Error.DetailNotFound
                 return RedirectToAction("Index");
             }
         }
@@ -51,7 +52,7 @@ namespace Proyecto3.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordUpdateError;
                 return RedirectToAction("Index");
             }
         }
@@ -62,14 +63,14 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _clientesService.AddAsync(altaClientesDTO);
-                    TempData["SuccessMessage"] = "Cliente agregado exitosamente!";
+                    TempData["SuccessMessage"] = Messages.Success.CustomersCreated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Error al crear el cliente";
+                TempData["ErrorMessage"] = Messages.Error.CustomersCreateError;
             }
             return View(altaClientesDTO);
         }
@@ -83,13 +84,13 @@ namespace Proyecto3.Controllers
                 if (ModelState.IsValid)
                 {
                     await _clientesService.UpdateAsync(altaClientesDTO.Id, altaClientesDTO);
-                    TempData["SuccessMessage"] = "Registro actualizado existosamente";
+                    TempData["SuccessMessage"] = Messages.Success.RecordUpdated;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al modificar registro";
+                TempData["ErrorMessage"] = Messages.Error.CustomersCreateError;
             }
 
             return View(altaClientesDTO);
@@ -105,7 +106,7 @@ namespace Proyecto3.Controllers
             }
             catch (ApplicationException e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
                 return RedirectToAction("Index");
             }
         }
@@ -118,11 +119,11 @@ namespace Proyecto3.Controllers
             try
             {
                 await _clientesService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Registro eliminado";
+                TempData["SuccessMessage"] = Messages.Error.RecordDeleteError;
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Error al eliminar el registro";
+                TempData["ErrorMessage"] = Messages.Error.RecordDeleteError;
             }
 
             return RedirectToAction("Index");
