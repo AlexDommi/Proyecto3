@@ -63,7 +63,7 @@ namespace Proyecto3.Services.Implementations
 
         public async Task AddAsync(DirectionsCreateDTO AddDTO)
         {
-            var result = new Direcciones
+            var result = new Directions
             {
                 ClientesId = AddDTO.ClientesId,
                 DireccionCalle = AddDTO.DireccionCalle,

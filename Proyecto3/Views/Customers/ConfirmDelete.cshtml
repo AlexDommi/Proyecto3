@@ -38,7 +38,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="@Url.Action("Index", "Clientes")" class="btn btn-outline-secondary px-4 py-2">
+                <a href="@Url.Action("Index", "Customers")" class="btn btn-outline-secondary px-4 py-2">
                     <i class="fas fa-arrow-left"></i> Cancelar
                 </a>
                 <button type="submit" form="delete-form" class="btn btn-danger px-4 py-2 ms-2">
@@ -48,5 +48,5 @@
         </div>
     </div>
 
-    <form id="delete-form" method="post" action="@Url.Action("Delete", "Clientes", new { id = Model.Id })" class="d-none"></form>
+    <form id="delete-form" method="post" action="@Url.Action("Delete", "Customers", new { id = Model.Id })" class="d-none"></form>
 </div>

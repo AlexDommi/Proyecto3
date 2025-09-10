@@ -14,7 +14,7 @@ namespace Proyecto3.Models
         public IEnumerable<Agreements> Acuerdos { get; set; }
         public IEnumerable<Contacts> Contactos { get; set; }
         public IEnumerable<Mails> Correos { get; set; }
-        public  IEnumerable<Direcciones> Direcciones { get; set; }
+        public  IEnumerable<Directions> Direcciones { get; set; }
         public IEnumerable<Followups> Seguimientos { get; set; }
     }
 }

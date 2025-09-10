@@ -2,7 +2,7 @@
 
 namespace Proyecto3.Models
 {
-    public class Direcciones : Registry
+    public class Directions : Registry
     {
         public int Id { get; set; }
         [Required]
